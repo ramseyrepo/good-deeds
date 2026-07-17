@@ -1,0 +1,93 @@
+// Prisma schema — Good Deeds
+// The datasource URL lives in prisma.config.ts. The PrismaClient is
+// instantiated with an adapter in src/lib/db.ts — always import `db` from there.
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// ── Good Deeds domain ──────────────────────────────────────────────────────
+
+model User {
+  id            String          @id @default(cuid())
+  sub           String          @unique // Souped auth subject (JWT `sub`)
+  email         String?
+  name          String?
+  role          String          @default("volunteer") // "volunteer" | "organizer"
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
+
+  organized     Event[]         @relation("OrganizedEvents")
+  participations Participation[]
+}
+
+// A volunteering event ("Project" in the brief: time/date, activity type, participation)
+model Event {
+  id             String          @id @default(cuid())
+  title          String
+  description    String
+  activityType   String          // e.g. "cleanup", "food-bank", "tutoring", "other"
+  location       String
+  startsAt       DateTime
+  endsAt         DateTime
+  capacity       Int?            // optional cap on volunteers
+  organizerId    String
+  organizer      User            @relation("OrganizedEvents", fields: [organizerId], references: [id])
+  createdAt      DateTime        @default(now())
+  updatedAt      DateTime        @updatedAt
+
+  participations Participation[]
+
+  @@index([startsAt])
+  @@index([organizerId])
+}
+
+// Tracks a volunteer's participation in an event — the product differentiator.
+model Participation {
+  id          String   @id @default(cuid())
+  eventId     String
+  event       Event    @relation(fields: [eventId], references: [id], onDelete: Cascade)
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  status      String   @default("going") // "going" | "attended" | "cancelled"
+  hoursLogged Float    @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@unique([eventId, userId])
+  @@index([userId, status])
+}
+
+// ── Notifications (from boilerplate; kept) ─────────────────────────────────
+
+model Notification {
+  id          String    @id @default(cuid())
+  userSub     String
+  workflowKey String
+  title       String
+  body        String
+  data        Json?
+  readAt      DateTime?
+  createdAt   DateTime  @default(now())
+
+  @@index([userSub, readAt])
+  @@index([userSub, createdAt])
+}
+
+// Souped-owned: managed by Souped via MCP. Do NOT alter its structure from the app.
+model NotificationWorkflowConfig {
+  key               String   @id
+  label             String
+  description       String
+  availableChannels String[]
+  enabled           Boolean  @default(false)
+  channels          String[]
+  updatedAt         DateTime @updatedAt
+
+  @@map("souped_notification_workflow_config")
+}
