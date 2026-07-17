@@ -14,7 +14,7 @@ export default function Landing() {
       <header className="mx-auto flex max-w-6xl items-center justify-between px-6 py-5">
         <div className="flex items-center gap-2">
           <span className="bg-gd-forest flex size-8 items-center justify-center rounded-lg">
-            <Sprout className="text-gd-sprout-light size-5" aria-hidden />
+            <Sprout className="size-5 text-white" aria-hidden />
           </span>
           <span className="font-heading text-lg font-semibold">Good Deeds</span>
         </div>

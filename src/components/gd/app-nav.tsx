@@ -8,7 +8,7 @@ export function AppNav() {
     <header className="bg-background/80 sticky top-0 z-10 flex items-center justify-between border-b px-4 py-2.5 backdrop-blur md:px-6">
       <Link href="/app" className="flex items-center gap-2">
         <span className="bg-gd-forest flex size-7 items-center justify-center rounded-md">
-          <Sprout className="text-gd-sprout-light size-4" aria-hidden />
+          <Sprout className="size-4 text-white" aria-hidden />
         </span>
         <span className="font-heading text-base font-semibold">Good Deeds</span>
       </Link>
