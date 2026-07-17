@@ -19,6 +19,9 @@ export function AppNav() {
         <Button asChild variant="ghost" size="sm">
           <Link href="/app/events/new">Post a deed</Link>
         </Button>
+        <Button asChild variant="ghost" size="sm">
+          <Link href="/app/profile">Profile</Link>
+        </Button>
         <NotificationBell />
         <Button asChild variant="ghost" size="sm">
           {/* eslint-disable-next-line @next/next/no-html-link-for-pages -- API route: needs a full navigation to clear the session */}

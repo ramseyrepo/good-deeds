@@ -18,6 +18,9 @@ model User {
   sub           String          @unique // Souped auth subject (JWT `sub`)
   email         String?
   name          String?
+  username      String          @unique // public profile handle (/u/<username>)
+  bio           String?
+  profilePublic Boolean         @default(false) // opt-in: profile is private until turned on
   role          String          @default("volunteer") // "volunteer" | "organizer"
   createdAt     DateTime        @default(now())
   updatedAt     DateTime        @updatedAt

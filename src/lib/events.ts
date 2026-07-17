@@ -16,10 +16,10 @@ export async function getEventDetail(eventId: string, userId: string) {
   const event = await db.event.findUnique({
     where: { id: eventId },
     include: {
-      organizer: { select: { id: true, name: true, email: true } },
+      organizer: { select: { id: true, name: true, email: true, username: true, profilePublic: true } },
       participations: {
         where: { status: { not: "cancelled" } },
-        include: { user: { select: { name: true, email: true } } },
+        include: { user: { select: { name: true, email: true, username: true, profilePublic: true } } },
         orderBy: { createdAt: "asc" },
       },
     },

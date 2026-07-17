@@ -52,7 +52,16 @@ export default async function EventDetailPage({
           <span className="flex items-center gap-2">
             <Users className="size-4" aria-hidden /> {goingCount} going
             {event.capacity ? ` · cap ${event.capacity}` : ""} · hosted by{" "}
-            {event.organizer.name ?? event.organizer.email ?? "an organizer"}
+            {event.organizer.profilePublic ? (
+              <Link
+                href={`/u/${event.organizer.username}`}
+                className="hover:text-foreground underline-offset-4 hover:underline"
+              >
+                {event.organizer.name ?? `@${event.organizer.username}`}
+              </Link>
+            ) : (
+              event.organizer.name ?? event.organizer.email ?? "an organizer"
+            )}
           </span>
         </div>
       </div>
@@ -85,15 +94,23 @@ export default async function EventDetailPage({
         <h2 className="font-heading mb-3 text-lg font-semibold">Who&apos;s going</h2>
         {goingCount > 0 ? (
           <ul className="flex flex-wrap gap-2">
-            {event.participations.map((p) => (
-              <li
-                key={p.id}
-                className="bg-secondary text-secondary-foreground rounded-full px-3 py-1 text-sm"
-              >
-                {p.user.name ?? p.user.email ?? "Volunteer"}
-                {p.status === "attended" ? " ✓" : ""}
-              </li>
-            ))}
+            {event.participations.map((p) => {
+              const label = `${p.user.name ?? p.user.email ?? "Volunteer"}${p.status === "attended" ? " ✓" : ""}`;
+              return (
+                <li
+                  key={p.id}
+                  className="bg-secondary text-secondary-foreground rounded-full px-3 py-1 text-sm"
+                >
+                  {p.user.profilePublic ? (
+                    <Link href={`/u/${p.user.username}`} className="underline-offset-4 hover:underline">
+                      {label}
+                    </Link>
+                  ) : (
+                    label
+                  )}
+                </li>
+              );
+            })}
           </ul>
         ) : (
           <p className="text-muted-foreground text-sm">Be the first to join.</p>

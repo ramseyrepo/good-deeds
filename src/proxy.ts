@@ -28,7 +28,7 @@ const passthrough = () => NextResponse.next();
 // per-route protection — only edit it manually if you know what you want.
 export const proxy = withSoupedAuth(
   {
-    publicRoutes: ["/"],
+    publicRoutes: ["/", "/u/:path*"],
   },
   passthrough,
 );
