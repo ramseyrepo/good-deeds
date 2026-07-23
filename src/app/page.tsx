@@ -1,9 +1,10 @@
 import Link from "next/link";
 import { ClipboardCheck, HandHeart, MapPin, Sprout } from "lucide-react";
+import { UluMark } from "@/components/gd/ulu-mark";
 import { Button } from "@/components/ui/button";
 
 export const metadata = {
-  title: "Good Deeds — do good, keep the receipts",
+  title: "Ulu — do good, keep the receipts",
   description:
     "Find volunteering near you, show up, and build a record of your impact — hours and deeds that add up.",
 };
@@ -14,9 +15,9 @@ export default function Landing() {
       <header className="mx-auto flex max-w-6xl items-center justify-between px-6 py-5">
         <div className="flex items-center gap-2">
           <span className="bg-gd-forest flex size-8 items-center justify-center rounded-lg">
-            <Sprout className="size-5 text-white" aria-hidden />
+            <UluMark className="size-5 text-white" />
           </span>
-          <span className="font-heading text-lg font-semibold">Good Deeds</span>
+          <span className="font-heading text-lg font-semibold">Ulu</span>
         </div>
         <Button asChild variant="ghost" size="sm">
           <Link href="/app">Sign in</Link>
@@ -132,7 +133,7 @@ export default function Landing() {
 
       <footer className="border-gd-forest/10 border-t">
         <div className="text-gd-ink/50 mx-auto max-w-6xl px-6 py-8 text-sm">
-          Good Deeds — do good, keep the receipts.
+          Ulu — do good, keep the receipts.
         </div>
       </footer>
     </div>

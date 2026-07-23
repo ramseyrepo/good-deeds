@@ -19,7 +19,7 @@ const jetBrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Good Deeds — do good, keep the receipts",
+  title: "Ulu — do good, keep the receipts",
   description:
     "Find volunteering near you, show up, and build a record of your impact — hours and deeds that add up.",
   icons: {

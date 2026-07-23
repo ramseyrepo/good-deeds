@@ -7,7 +7,7 @@ import { Toaster } from "@/components/ui/sonner";
 // Defense-in-depth: authenticated app pages must never be indexed.
 export const metadata: Metadata = {
   robots: { index: false, follow: false },
-  title: "Good Deeds",
+  title: "Ulu",
 };
 
 export default async function AppLayout({

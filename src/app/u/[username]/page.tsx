@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Clock, HandHeart, MapPin, Sprout } from "lucide-react";
+import { UluMark } from "@/components/gd/ulu-mark";
 import { getPublicProfile } from "@/lib/profile";
 import { formatEventWhen } from "@/lib/format";
 import { Badge } from "@/components/ui/badge";
@@ -19,12 +20,12 @@ export async function generateMetadata({
   const { username } = await params;
   const profile = await getPublicProfile(username);
   if (!profile) {
-    return { title: "Profile · Good Deeds", robots: { index: false, follow: false } };
+    return { title: "Profile · Ulu", robots: { index: false, follow: false } };
   }
   const who = profile.user.name ?? `@${profile.user.username}`;
   return {
-    title: `${who} · Good Deeds`,
-    description: `${who} has logged ${Math.round(profile.hoursLogged)} volunteering hours across ${profile.deedsDone} deeds on Good Deeds.`,
+    title: `${who} · Ulu`,
+    description: `${who} has logged ${Math.round(profile.hoursLogged)} volunteering hours across ${profile.deedsDone} deeds on Ulu.`,
     robots: { index: true, follow: true },
   };
 }
@@ -52,9 +53,9 @@ export default async function PublicProfilePage({
       <header className="mx-auto flex max-w-3xl items-center justify-between px-6 py-5">
         <Link href="/" className="flex items-center gap-2">
           <span className="bg-gd-forest flex size-7 items-center justify-center rounded-lg">
-            <Sprout className="size-4 text-white" aria-hidden />
+            <UluMark className="size-4 text-white" />
           </span>
-          <span className="font-heading text-base font-semibold">Good Deeds</span>
+          <span className="font-heading text-base font-semibold">Ulu</span>
         </Link>
         <Button asChild size="sm" className="bg-gd-forest text-gd-paper hover:bg-gd-forest/90">
           <Link href="/app">Start your record</Link>

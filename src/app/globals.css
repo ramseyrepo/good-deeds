@@ -241,7 +241,7 @@ button.wf-btn-secondary:hover:not(:disabled) {
   }
 }
 
-/* ── Good Deeds brand overrides ────────────────────────────────────────────
+/* ── Ulu brand overrides ────────────────────────────────────────────
    Warm, civic, growth-oriented. See docs/design/design-contract.md §1.
    These override the boilerplate light theme; app-shell UI reads shadcn slots. */
 :root {

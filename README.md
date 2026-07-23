@@ -1,4 +1,4 @@
-# Good Deeds
+# Ulu
 
 Post volunteering events and **track participation** — hours and deeds that add up to a
 personal impact record. Built on the Souped stack (Next.js 16, React 19, Prisma 7,
@@ -37,7 +37,7 @@ pnpm dev                            # http://localhost:3000
 - `SOUPED_URL`, `SOUPED_CLIENT_ID`, `SOUPED_CLIENT_SECRET`, `SOUPED_APP_ID`,
   `SOUPED_AUDIENCE`, `SOUPED_ISSUER`, `SOUPED_SESSION_SECRET` — from the Souped
   dashboard or `glaze_get_project_auth_setup` (MCP). The Souped project already
-  exists: **Good Deeds** (`pj-damp-yew-qei4up`).
+  exists: **Ulu** (`pj-damp-yew-qei4up`).
 
 ## Deploy later (via /souped)
 
